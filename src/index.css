@@ -1,0 +1,132 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 40 30% 98%;
+    --foreground: 220 12% 38%;
+
+    --card: 40 25% 97%;
+    --card-foreground: 220 12% 38%;
+
+    --popover: 0 0% 99%;
+    --popover-foreground: 220 12% 38%;
+
+    --primary: 180 45% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 340 55% 65%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 40 20% 95%;
+    --muted-foreground: 220 12% 52%;
+
+    --accent: 45 75% 65%;
+    --accent-foreground: 220 12% 38%;
+
+    --destructive: 0 60% 70%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 15% 90%;
+    --input: 220 15% 90%;
+    --ring: 210 25% 58%;
+
+    --radius: 0.75rem;
+    
+    /* Custom pastel tokens for Nico Burger Art */
+    --artist-sky: 200 30% 75%;
+    --artist-lavender: 270 30% 80%;
+    --artist-peach: 15 60% 80%;
+    --artist-sage: 120 20% 68%;
+    --artist-pink: 340 45% 85%;
+    --artist-cream: 40 25% 92%;
+    --artist-grey: 220 12% 55%;
+    --artist-coral: 15 50% 70%;
+    --artist-sky-soft: 200 30% 75%;
+    
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(200 35% 75% / 0.1), hsl(340 45% 85% / 0.1));
+    --shadow-soft: 0 2px 12px hsl(220 15% 35% / 0.05);
+    --shadow-hover: 0 8px 24px hsl(220 15% 35% / 0.08);
+    --shadow-elevated: 0 4px 20px hsl(220 15% 35% / 0.06);
+    
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 220 20% 15%;
+    --foreground: 40 20% 95%;
+
+    --card: 220 18% 18%;
+    --card-foreground: 40 20% 95%;
+
+    --popover: 220 18% 18%;
+    --popover-foreground: 40 20% 95%;
+
+    --primary: 200 30% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 340 35% 60%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 220 15% 25%;
+    --muted-foreground: 220 10% 70%;
+
+    --accent: 15 40% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 50% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 15% 25%;
+    --input: 220 15% 25%;
+    --ring: 200 30% 55%;
+    
+    --artist-sky: 200 30% 60%;
+    --artist-lavender: 270 25% 65%;
+    --artist-peach: 15 50% 65%;
+    --artist-sage: 120 20% 60%;
+    --artist-pink: 340 35% 70%;
+    --artist-cream: 40 20% 85%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    line-height: 1.7;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    letter-spacing: -0.01em;
+  }
+}
