@@ -1,4 +1,4 @@
-import { useSearchParams } from "react-router-dom";
+import { useState } from "react";
 import { usePaintings } from "@/hooks/usePaintings";
 import { Painting } from "@/types/painting";
 import { GallerySkeleton } from "./GallerySkeleton";
@@ -6,22 +6,13 @@ import { EmptyGallery } from "./EmptyGallery";
 import { ArtworkDetailModal } from "./ArtworkDetailModal";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-
 export const Gallery = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const { data: paintings, isLoading, error } = usePaintings();
-
-  // Derive selected artwork from URL query param
-  const artworkSlug = searchParams.get("artwork");
-  const selectedArtwork = paintings?.find((p) => p.slug === artworkSlug) || null;
-
-  const openArtworkModal = (painting: Painting) => {
-    setSearchParams({ artwork: painting.slug });
-  };
-
-  const closeArtworkModal = () => {
-    setSearchParams({});
-  };
+  const {
+    data: paintings,
+    isLoading,
+    error
+  } = usePaintings();
+  const [selectedArtwork, setSelectedArtwork] = useState<Painting | null>(null);
   if (isLoading) {
     return <GallerySkeleton />;
   }
@@ -56,7 +47,7 @@ export const Gallery = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {paintings.map((painting, index) => <div key={painting.id} className="group cursor-pointer animate-fade-in-up" style={{
             animationDelay: `${index * 50}ms`
-          }} onClick={() => openArtworkModal(painting)}>
+          }} onClick={() => setSelectedArtwork(painting)}>
                 <div className="relative overflow-hidden rounded-xl bg-card border border-border h-full flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_hsl(220_15%_35%_/_0.08)]" style={{
               boxShadow: '0 2px 12px hsl(220 15% 35% / 0.05)'
             }}>
@@ -102,6 +93,6 @@ export const Gallery = () => {
         </div>
       </section>
 
-      <ArtworkDetailModal artwork={selectedArtwork} onClose={closeArtworkModal} />
+      <ArtworkDetailModal artwork={selectedArtwork} onClose={() => setSelectedArtwork(null)} />
     </>;
 };

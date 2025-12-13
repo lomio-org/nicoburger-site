@@ -88,14 +88,12 @@ export const ArtworkDetailModal = ({ artwork, onClose }: ArtworkDetailModalProps
   const scrollPrev = () => emblaApi?.scrollPrev();
   const scrollNext = () => emblaApi?.scrollNext();
 
-  // Fullscreen handlers with history integration
+  // Fullscreen handlers
   const openFullscreen = (index: number) => {
     setFullscreenIndex(index);
     setIsFullscreen(true);
     setScale(1);
     setPosition({ x: 0, y: 0 });
-    // Push a history state for fullscreen so back button closes it
-    window.history.pushState({ fullscreen: true }, "");
   };
 
   const closeFullscreen = () => {
@@ -103,18 +101,6 @@ export const ArtworkDetailModal = ({ artwork, onClose }: ArtworkDetailModalProps
     setScale(1);
     setPosition({ x: 0, y: 0 });
   };
-
-  // Handle browser back button for fullscreen
-  useEffect(() => {
-    if (!isFullscreen) return;
-
-    const handlePopState = () => {
-      closeFullscreen();
-    };
-
-    window.addEventListener("popstate", handlePopState);
-    return () => window.removeEventListener("popstate", handlePopState);
-  }, [isFullscreen]);
 
   const navigateFullscreen = (direction: "prev" | "next") => {
     setFullscreenIndex((current) => {
