@@ -61,7 +61,7 @@ export const Contact = () => {
               className="font-heading font-semibold py-8 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all"
             >
               <a
-                href="mailto:ndburger@iafrica.com"
+                href="mailto:nicoburger13@gmail.com"
                 className="flex items-center gap-3"
               >
                 <Mail className="w-6 h-6" />
@@ -75,7 +75,7 @@ export const Contact = () => {
               <span className="font-semibold text-foreground">Phone:</span> 082 569 3884
             </p>
             <p className="font-body text-sm text-muted-foreground">
-              <span className="font-semibold text-foreground">Email:</span> ndburger@iafrica.com
+              <span className="font-semibold text-foreground">Email:</span> nicoburger13@gmail.com
             </p>
             <p className="font-body text-sm text-muted-foreground">
               <span className="font-semibold text-foreground">Location:</span> Durbanville, Cape Town, South Africa

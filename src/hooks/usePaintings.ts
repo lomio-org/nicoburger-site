@@ -17,6 +17,7 @@ export function usePaintings() {
           height_cm,
           width_cm,
           description,
+          medium_type,
           painting_images (
             id,
             image_url,
@@ -57,6 +58,7 @@ export function useAdminPaintings() {
           height_cm,
           width_cm,
           description,
+          medium_type,
           sort_index,
           updated_at,
           painting_images (

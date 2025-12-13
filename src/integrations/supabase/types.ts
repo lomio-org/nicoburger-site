@@ -56,8 +56,10 @@ export type Database = {
         Row: {
           created_at: string | null
           description: string | null
+          frame_included: boolean | null
           height_cm: number | null
           id: string
+          medium_type: string | null
           price_zar: number | null
           slug: string
           sort_index: number | null
@@ -69,8 +71,10 @@ export type Database = {
         Insert: {
           created_at?: string | null
           description?: string | null
+          frame_included?: boolean | null
           height_cm?: number | null
           id?: string
+          medium_type?: string | null
           price_zar?: number | null
           slug: string
           sort_index?: number | null
@@ -82,8 +86,10 @@ export type Database = {
         Update: {
           created_at?: string | null
           description?: string | null
+          frame_included?: boolean | null
           height_cm?: number | null
           id?: string
+          medium_type?: string | null
           price_zar?: number | null
           slug?: string
           sort_index?: number | null

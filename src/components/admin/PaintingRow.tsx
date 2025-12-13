@@ -39,7 +39,15 @@ export const PaintingRow = ({ painting, onEdit, onToggleStatus, onToggleHidden, 
           />
         )}
       </td>
-      <td className="p-4 font-medium">{painting.title}</td>
+      <td className="p-4 font-medium">
+        <button
+          type="button"
+          onClick={onEdit}
+          className="text-left hover:underline hover:text-primary transition-colors cursor-pointer"
+        >
+          {painting.title}
+        </button>
+      </td>
       <td className="p-4">
         {painting.price_zar ? `R ${painting.price_zar}` : '—'}
       </td>

@@ -6,7 +6,9 @@ export const paintingSchema = z.object({
   width_cm: z.number().positive("Width must be positive").optional().nullable(),
   description: z.string().max(2000).optional().nullable(),
   price_zar: z.number().positive("Price must be positive").optional().nullable(),
-  status: z.enum(['available', 'sold', 'hidden'])
+  status: z.enum(['available', 'sold', 'hidden']),
+  medium_type: z.string().max(100).optional().nullable(),
+  frame_included: z.boolean().optional().nullable()
 });
 
 export type PaintingFormData = z.infer<typeof paintingSchema>;
@@ -35,12 +37,6 @@ export function validateImages(images: any[]): string | null {
   // If more than 1 image, recommend secondary selection
   if (images.length > 1 && !images.some(img => img.is_secondary)) {
     return "Please select a secondary image by clicking 'Set as Secondary' (this will be shown first in preview)";
-  }
-  
-  // Primary image must have alt text
-  const primaryImage = images.find(img => img.is_primary);
-  if (primaryImage && (!primaryImage.alt || primaryImage.alt.trim().length === 0)) {
-    return "Please provide alt text for the primary image";
   }
   
   return null;

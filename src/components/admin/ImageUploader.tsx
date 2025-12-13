@@ -66,11 +66,6 @@ export const ImageUploader = ({ images, onChange }: ImageUploaderProps) => {
     })));
   };
 
-  const handleAltChange = (index: number, alt: string) => {
-    onChange(images.map((img, i) => 
-      i === index ? { ...img, alt } : img
-    ));
-  };
 
   const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
@@ -150,7 +145,6 @@ export const ImageUploader = ({ images, onChange }: ImageUploaderProps) => {
                 onRemove={() => handleRemove(index)}
                 onSetPrimary={() => handleSetPrimary(index)}
                 onSetSecondary={() => handleSetSecondary(index)}
-                onAltChange={(alt) => handleAltChange(index, alt)}
               />
             ))}
           </SortableContext>
@@ -181,22 +175,6 @@ export const ImageUploader = ({ images, onChange }: ImageUploaderProps) => {
         </div>
       )}
 
-      {primaryImage && (
-        <div className="space-y-2">
-          <Label>Alt Text for Primary Image *</Label>
-          <p className="text-xs text-muted-foreground mb-2">
-            Describe what the painting shows for accessibility and SEO (e.g., "Colorful landscape with trees at sunset")
-          </p>
-          <Input
-            value={primaryImage.alt}
-            onChange={(e) => {
-              const index = images.findIndex(img => img.is_primary);
-              if (index !== -1) handleAltChange(index, e.target.value);
-            }}
-            placeholder="Describe the primary image"
-          />
-        </div>
-      )}
     </div>
   );
 };
@@ -209,7 +187,6 @@ interface ImagePreviewProps {
   onRemove: () => void;
   onSetPrimary: () => void;
   onSetSecondary: () => void;
-  onAltChange: (alt: string) => void;
 }
 
 const ImagePreview = ({ image, index, showPrimaryButton, showSecondaryButton, onRemove, onSetPrimary, onSetSecondary }: ImagePreviewProps) => {

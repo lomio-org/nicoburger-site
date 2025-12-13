@@ -20,6 +20,8 @@ export interface Painting {
   sort_index: number;
   created_at: string;
   updated_at: string;
+  medium_type: string | null;
+  frame_included: boolean | null;
   painting_images?: PaintingImage[];
   primary_image?: PaintingImage;
   secondary_image?: PaintingImage;

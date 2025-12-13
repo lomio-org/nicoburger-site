@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
 import { ImageUploader } from './ImageUploader';
 import { paintingSchema, PaintingFormData, validateImages } from '@/lib/validation';
 import { slugify } from '@/lib/slugify';
@@ -36,7 +37,9 @@ export const PaintingFormModal = ({ open, onOpenChange, painting }: PaintingForm
       width_cm: null,
       description: '',
       price_zar: null,
-      status: 'available'
+      status: 'available',
+      medium_type: 'Acrylic',
+      frame_included: false
     }
   });
 
@@ -49,7 +52,9 @@ export const PaintingFormModal = ({ open, onOpenChange, painting }: PaintingForm
         width_cm: painting.width_cm,
         description: painting.description,
         price_zar: painting.price_zar,
-        status: painting.status
+        status: painting.status,
+        medium_type: painting.medium_type,
+        frame_included: painting.frame_included
       });
       
       if (painting.all_images) {
@@ -114,6 +119,8 @@ export const PaintingFormModal = ({ open, onOpenChange, painting }: PaintingForm
         description: data.description,
         price_zar: data.price_zar,
         status: data.status,
+        medium_type: data.medium_type,
+        frame_included: data.frame_included,
         slug
       })
       .select()
@@ -152,7 +159,9 @@ export const PaintingFormModal = ({ open, onOpenChange, painting }: PaintingForm
         width_cm: data.width_cm,
         description: data.description,
         price_zar: data.price_zar,
-        status: data.status
+        status: data.status,
+        medium_type: data.medium_type,
+        frame_included: data.frame_included
       })
       .eq('id', id);
 
@@ -273,7 +282,7 @@ export const PaintingFormModal = ({ open, onOpenChange, painting }: PaintingForm
                 name="height_cm"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Height (cm)</FormLabel>
+                    <FormLabel>Height (mm)</FormLabel>
                     <FormControl>
                       <Input
                         type="number"
@@ -292,7 +301,7 @@ export const PaintingFormModal = ({ open, onOpenChange, painting }: PaintingForm
                 name="width_cm"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Width (cm)</FormLabel>
+                    <FormLabel>Width (mm)</FormLabel>
                     <FormControl>
                       <Input
                         type="number"
@@ -306,6 +315,20 @@ export const PaintingFormModal = ({ open, onOpenChange, painting }: PaintingForm
                 )}
               />
             </div>
+
+            <FormField
+              control={form.control}
+              name="medium_type"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Type</FormLabel>
+                  <FormControl>
+                    <Input {...field} value={field.value || ''} placeholder="e.g., Acrylic, Oil, Watercolor" />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
             <FormField
               control={form.control}
@@ -364,6 +387,29 @@ export const PaintingFormModal = ({ open, onOpenChange, painting }: PaintingForm
                 )}
               />
             </div>
+
+            <FormField
+              control={form.control}
+              name="frame_included"
+              render={({ field }) => (
+                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value || false}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <FormLabel>
+                      Frame Included
+                    </FormLabel>
+                    <p className="text-sm text-muted-foreground">
+                      Check if this painting includes a frame
+                    </p>
+                  </div>
+                </FormItem>
+              )}
+            />
 
             <ImageUploader images={images} onChange={setImages} />
 
